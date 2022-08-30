@@ -43,7 +43,10 @@ const displyPhone = (phones, dataLimit) => {
         <div class="card-body">
           <h5 class="card-title">${phone.phone_name}</h5>
           <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <butten onclick="loadDatails('${phone.slug}')"   href="#" class="btn btn-primary" >show Details </butten>
+          <button onclick="displyPhoneDetail('${phone.slug}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Show Datais
+  
+</button>
         </div>
         
 
@@ -90,7 +93,18 @@ const loadDatails = async id => {
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data.data)
+    displyPhoneDetail(data.data)
+
+}
+const displyPhoneDetail = phone => {
+    console.log(phone)
+    const modalTailel = document.getElementById('exampleModalLabel')
+    modalTailel.innerText = phone.name ? phone.name : 'nai koi pamu vai';
+    const phoneModal = document.getElementById('phone-modal')
+    phoneModal.innerHTML = `
+    <p>${phone.releaseDate?phone.releaseDate:"no data"}</P>
+    `
+
 
 }
 
