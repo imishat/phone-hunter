@@ -17,11 +17,23 @@
     </header>
     <main class="container">
         <section>
+            <div class="mb-3 w-50">
+                <label for="exampleFormControlInput1" class="form-label"></label>
+                <input type="email" class="form-control" id="search-field" placeholder="search your phone">
+                <button id="search-btn" class="btn btn-primary mt-2">search</button>
+            </div>
+
+        </section>
+
+        <section>
             <div id="phone-container">
                 <div id="phone-container" class="row row-cols-1 row-cols-md-2 g-4">
 
                 </div>
 
+            </div>
+            <div id="no-found-message" class="mt-4 d-none">
+                <h3 class="text-warning">NO phone found please try a new search</h3>
             </div>
         </section>
     </main>
