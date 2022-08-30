@@ -5,7 +5,7 @@ const lodePhone = async(searchText, dataLimit) => {
     displyPhone(data.data, dataLimit)
 }
 const displyPhone = (phones, dataLimit) => {
-    console.log(phones)
+    // console.log(phones)
     const phoneContainer = document.getElementById('phone-container')
     phoneContainer.textContent = ''
     const showAll = document.getElementById('show-all')
@@ -43,7 +43,10 @@ const displyPhone = (phones, dataLimit) => {
         <div class="card-body">
           <h5 class="card-title">${phone.phone_name}</h5>
           <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <butten onclick="loadDatails('${phone.slug}')"   href="#" class="btn btn-primary" >show Details </butten>
         </div>
+        
+
       </div>
         
         `
@@ -59,10 +62,19 @@ const processSerach = (dataLimit) => {
     lodePhone(seaechText, dataLimit)
 }
 document.getElementById('search-btn').addEventListener('click', function() {
-    //start loader
-    processSerach(10);
+        //start loader
+        processSerach(10);
 
+    })
+    //scaech inpput files enter add
+document.getElementById('search-field').addEventListener('keypress', function(event) {
+    //console.log(event.key)
+    if (event.key === "Enter") {
+        processSerach(10)
+
+    }
 })
+
 const togglespinner = isLoasing => {
     const loadingsection = document.getElementById('lode-spinner')
     if (isLoasing) {
@@ -74,5 +86,12 @@ const togglespinner = isLoasing => {
 document.getElementById('bnt-show-all').addEventListener('click', function() {
     processSerach()
 })
+const loadDatails = async id => {
+    const url = `https://openapi.programming-hero.com/api/phone/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data.data)
+
+}
 
 //lodePhone()
